@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ekipa — FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Početna</a></li>
+      <li><a href="vesti.html">Vesti</a></li>
+      <li><a href="utakmice.html">Utakmice</a></li>
+      <li><a href="ekipa.html" class="active">Ekipa</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="vremeplov.html">Vremeplov</a></li>
+      <li><a href="istorija.html">Istorija</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Početna</a>
+    <a href="vesti.html">Vesti</a>
+    <a href="utakmice.html">Utakmice</a>
+    <a href="ekipa.html">Ekipa</a>
+    <a href="galerija.html">Galerija</a>
+    <a href="vremeplov.html">Vremeplov</a>
+    <a href="istorija.html">Istorija</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg" style="background-image:url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1600&q=80')"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <h1>NAŠA <span class="accent">EKIPA</span></h1>
+    <p>Sezona 2025/26</p>
+  </div>
+</header>
+
+<section class="section">
+  <h3 class="pos-title">Golmani</h3>
+  <div class="full-squad-grid">
+    <div class="full-player-card">
+      <div class="fp-num">1</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info">
+        <span class="fp-pos">GK</span>
+        <h4>Ilić Ognjen</h4>
+        <span class="fp-nat">🇷🇸 Serbia</span>
+      </div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">13</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info">
+        <span class="fp-pos">GK</span>
+        <h4>Kostić Aleksandar</h4>
+        <span class="fp-nat">🇷🇸 Serbia</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="pos-title">Odbrana</h3>
+  <div class="full-squad-grid">
+    <div class="full-player-card">
+      <div class="fp-num">2</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">RB</span><h4>Petrović Robert</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">3</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">LB</span><h4>Cvetković Mladen</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">4</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">CB</span><h4>Nikolić Nemanja</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">5</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">CB</span><h4>Petrović Veljko</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">6</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">LB</span><h4>Mladenović Ivan</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">6</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">LB</span><h4>Nikolov Mladen</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+  </div>
+
+  <h3 class="pos-title">Sredina</h3>
+  <div class="full-squad-grid">
+    <div class="full-player-card">
+      <div class="fp-num">7</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">LM</span><h4>Vasov Luka</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">8</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">CM</span><h4>Sokolov Stefan</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">10</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">RM</span><h4>Matejić Vladimir</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">10</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">RM</span><h4>Jordanov Dragan</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">14</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">LM</span><h4>Jovanović Dimitrije</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">16</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">CM</span><h4>Kostić Aleksandar</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+  </div>
+
+  <h3 class="pos-title">Napad</h3>
+  <div class="full-squad-grid">
+    <div class="full-player-card">
+      <div class="fp-num">9</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">ST</span><h4>Milošević Željko</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">11</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">LW</span><h4>Branković Lazar</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+    <div class="full-player-card">
+      <div class="fp-num">17</div>
+      <div class="fp-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="fp-info"><span class="fp-pos">RW</span><h4>Zlatković Vladimir</h4><span class="fp-nat">🇷🇸 Serbia</span></div>
+    </div>
+  </div>
+
+<!-- TRENER -->
+  <h3 class="pos-title" style="margin-top:4rem">Trener</h3>
+  <div class="staff-grid">
+    <div class="staff-card">
+      <div class="staff-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <h4>Jocić Nikola</h4>
+      <span>Glavni Trener</span>
+    </div>
+  </div>
+
+
+  <!-- STAFF -->
+  <h3 class="pos-title" style="margin-top:4rem">Članovi Uprave</h3>
+  <div class="staff-grid">
+    <div class="staff-card">
+      <div class="staff-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <h4>Ime Prezime</h4>
+      <span>Predsednik Kluba</span>
+    </div>
+    <div class="staff-card">
+      <div class="staff-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <h4>Ime Prezime</h4>
+      <span>Predstavnik Kluba</span>
+    </div>
+    <div class="staff-card">
+      <div class="staff-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <h4>Ime Prezime</h4>
+      <span>Uloga</span>
+    </div>
+    <div class="staff-card">
+      <div class="staff-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <h4>Ime Prezime</h4>
+      <span>Uloga</span>
+    </div>
+    <div class="staff-card">
+      <div class="staff-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <h4>Ime Prezime</h4>
+      <span>Uloga</span>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <div>
+        <div class="logo-text">FK JEDINSTVO PIROT</div>
+        <p>Ponos Pirota.<br>Osnovan 1927.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Kontakt</h5>
+      <p>Gradski Stadion, Pirot</p>
+      <p>office@fkjedinstvo.rs</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FK Jedinstvo Pirot.<br>Napravio s ❤️ Mladen Nikolov</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Utakmice — FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    .league-table-section {
+      padding: 60px 20px 80px;
+      background: #0d0d0d;
+    }
+    .league-table-header {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .league-table-subtitle {
+      text-align: center;
+      color: #555;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .league-table-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .liga-loading {
+      text-align: center;
+      padding: 50px 20px;
+      color: #555;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .liga-spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #333;
+      border-top-color: var(--accent, #e63329);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    table.liga-tabela {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+    }
+    table.liga-tabela thead tr {
+      border-bottom: 2px solid var(--accent, #e63329);
+    }
+    table.liga-tabela thead th {
+      padding: 9px 10px;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #666;
+    }
+    table.liga-tabela thead th.col-klub { text-align: left; }
+    table.liga-tabela tbody tr {
+      border-bottom: 1px solid #1a1a1a;
+      transition: background 0.15s;
+    }
+    table.liga-tabela tbody tr:hover { background: #161616; }
+    table.liga-tabela tbody tr.mi {
+      background: rgba(230, 51, 41, 0.07);
+      border-left: 3px solid var(--accent, #e63329);
+    }
+    table.liga-tabela tbody tr.mi:hover { background: rgba(230, 51, 41, 0.13); }
+    table.liga-tabela tbody td {
+      padding: 10px 10px;
+      text-align: center;
+      color: #aaa;
+    }
+    table.liga-tabela tbody td.col-klub {
+      text-align: left;
+      font-weight: 600;
+      color: #ddd;
+    }
+    table.liga-tabela tbody tr.mi td { color: #ddd; }
+    table.liga-tabela tbody tr.mi td.col-klub { color: #fff; font-weight: 700; }
+    td.col-pos { color: #444; font-weight: 700; min-width: 28px; }
+    table.liga-tabela tbody tr.mi td.col-pos { color: var(--accent, #e63329); }
+    td.col-bod { font-weight: 900; font-size: 1rem; color: #fff; }
+    tr.zona-linija td { border-top: 2px dashed #252525 !important; }
+    .liga-footer {
+      max-width: 860px;
+      margin: 10px auto 0;
+      text-align: right;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.75rem;
+      color: #444;
+    }
+    @media (max-width: 580px) {
+      .col-gd { display: none; }
+      table.liga-tabela thead th,
+      table.liga-tabela tbody td { padding: 8px 6px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Početna</a></li>
+      <li><a href="vesti.html">Vesti</a></li>
+      <li><a href="utakmice.html" class="active">Utakmice</a></li>
+      <li><a href="ekipa.html">Ekipa</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="vremeplov.html">Vremeplov</a></li>
+      <li><a href="istorija.html" >Istorija</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()" aria-label="Meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">POČETNA</a>
+    <a href="vesti.html">VESTI</a>
+    <a href="utakmice.html">UTAKMICE</a>
+    <a href="ekipa.html">EKIPA</a>
+    <a href="galerija.html">GALERIJA</a>
+    <a href="vremeplov.html">VREMEPLOV</a>
+    <a href="istorija.html">ISTORIJA</a>
+
+  </div>
+</nav>
+
+
+<header class="page-header">
+  <div class="page-header-bg" style="background-image:url('https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1600&q=80')"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <h1>UTAKMICE <span class="accent">I REZULTATI</span></h1>
+    <p>Okružna Liga Pirot · Sezona 2025/26</p>
+  </div>
+</header>
+
+<!-- MATCHES TABS -->
+<section class="section">
+  <div class="matches-tabs">
+    <button class="tab-btn active" onclick="showTab('upcoming')">Predstojeće</button>
+    <button class="tab-btn" onclick="showTab('results')">Prethodne</button>
+  </div>
+  <div class="tab-panel" id="tab-upcoming">
+    <div class="match-list"></div>
+  </div>
+  <div class="tab-panel hidden" id="tab-results">
+    <div class="match-list"></div>
+  </div>
+</section>
+
+<!-- TABELA LIGE -->
+<section class="section league-table-section">
+  <div class="league-table-header">
+    <h2 class="section-title">TABELA <span class="accent">LIGE</span></h2>
+  </div>
+  <p class="league-table-subtitle">Pirotska okružna liga · Sezona 2025/26</p>
+
+  <div class="league-table-wrap">
+    <div class="liga-loading" id="ligaLoading">
+      <span class="liga-spinner"></span> Učitavanje...
+    </div>
+    <table class="liga-tabela" id="ligaTabela" style="display:none">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th class="col-klub">Klub</th>
+          <th title="Odigrane utakmice">OU</th>
+          <th title="Pobede">POB</th>
+          <th title="Nerešeno">NER</th>
+          <th title="Porazi">POR</th>
+          <th title="Golovi">GR</th>
+          <th title="Gol razlika" class="col-gd">+/-</th>
+          <th title="Bodovi">BOD</th>
+        </tr>
+      </thead>
+      <tbody id="ligaTelo"></tbody>
+    </table>
+  </div>
+
+  <div class="liga-footer" id="ligaFooter" style="display:none">
+    Ažurirano: <span id="ligaDatum"></span>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <div>
+        <div class="logo-text">FK JEDINSTVO PIROT</div>
+        <p>Ponos Pirota.<br>Osnovano 1927.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Kontakt</h5>
+      <p>Gradski Stadion, Pirot</p>
+      <p>fkjedinstvo.rs@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FK Jedinstvo Pirot.<br>Napravio s ❤️ Mladen Nikolov</span>
+  </div>
+</footer>
+
+
+<script src="main.js"></script>
+<script>
+  /* ── TABS ─────────────────────────────── */
+  function showTab(tab) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.remove('hidden');
+    document.querySelector(`.tab-btn[onclick="showTab('${tab}')"]`).classList.add('active');
+  }
+
+  /* ── UTAKMICE ─────────────────────────── */
+  function renderMatches(containerSelector, matches, type) {
+    const container = document.querySelector(containerSelector);
+    container.innerHTML = '';
+    matches.forEach(m => {
+      const resultBadge = type === 'results'
+        ? `<span class="result-badge ${m.resultClass || 'win'}">${m.resultText || ''}</span>`
+        : '';
+      const score = type === 'results'
+        ? `<span class="match-vscore">${m.homeGoals} – ${m.awayGoals}</span>`
+        : `<span class="match-vscore">vs</span>`;
+      container.innerHTML += `
+      <div class="match-row match-row--${type} ${m.resultClass || ''}">
+        <div class="match-meta">
+          <span class="match-comp">${m.competition}</span>
+          <span class="match-date">${m.date}${m.time ? ' · ' + m.time : ''}</span>
+        </div>
+        <div class="match-fixture">
+          <span class="match-team home">${m.home}</span>
+          ${score}
+          <span class="match-team away">${m.away}</span>
+        </div>
+        <div class="match-venue">${m.venue || ''}</div>
+        ${resultBadge}
+      </div>`;
+    });
+  }
+
+  fetch('utakmice.json')
+    .then(r => r.json())
+    .then(data => {
+      renderMatches('#tab-upcoming .match-list', data.upcoming || [], 'upcoming');
+      renderMatches('#tab-results .match-list', data.results || [], 'results');
+    })
+    .catch(err => console.error('Greška:', err));
+
+  /* ── TABELA ───────────────────────────── */
+  fetch('tabela.json')
+    .then(r => r.json())
+    .then(data => {
+      const tbody  = document.getElementById('ligaTelo');
+      const ukupno = data.timovi.length;
+      tbody.innerHTML = '';
+
+      data.timovi.forEach((t, i) => {
+        const jeMi   = t.ime.toLowerCase().includes('jedinstvo');
+        const zona   = t.zonaIspadanja ? ' zona-linija' : '';
+        const gd     = t.dat - t.prim;
+        const gdStr  = gd > 0 ? '+' + gd : '' + gd;
+
+        tbody.innerHTML += `
+          <tr class="${jeMi ? 'mi' : ''}${zona}">
+            <td class="col-pos">${i + 1}</td>
+            <td class="col-klub">${t.ime}</td>
+            <td>${t.ou}</td>
+            <td>${t.pob}</td>
+            <td>${t.ner}</td>
+            <td>${t.por}</td>
+            <td>${t.dat}:${t.prim}</td>
+            <td class="col-gd">${gdStr}</td>
+            <td class="col-bod">${t.bod}</td>
+          </tr>`;
+      });
+
+      document.getElementById('ligaLoading').style.display = 'none';
+      document.getElementById('ligaTabela').style.display  = 'table';
+      document.getElementById('ligaFooter').style.display  = 'block';
+      document.getElementById('ligaDatum').textContent = data.azurirano || '';
+    })
+    .catch(err => {
+      console.error('Greška pri učitavanju tabele:', err);
+      document.getElementById('ligaLoading').style.display = 'none';
+    });
+
+
+</script>
+</body>
+</html>

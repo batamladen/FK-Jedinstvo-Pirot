@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galerija — FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── Gallery loader & states ── */
+    .gallery-loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #aaa;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .05em;
+    }
+    .gallery-loading .spinner {
+      width: 42px; height: 42px;
+      border: 3px solid #333;
+      border-top-color: var(--accent, #e63946);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .gallery-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: #666;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+    }
+
+    /* ── Category tabs ── */
+    .gallery-cats {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .cat-btn {
+      background: transparent;
+      border: 1px solid #444;
+      color: #ccc;
+      padding: 6px 18px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .95rem;
+      letter-spacing: .1em;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--accent, #e63946);
+      border-color: var(--accent, #e63946);
+      color: #fff;
+    }
+
+    /* ── Year filter ── */
+    .gallery-filter {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    /* ── Masonry grid ── */
+    .gallery-masonry {
+      columns: 4 220px;
+      column-gap: 12px;
+    }
+    .gal-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #111;
+    }
+    .gal-item img {
+      width: 100%;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .gal-item:hover img { transform: scale(1.04); }
+    .gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 10px 12px;
+    }
+    .gal-item:hover .gal-overlay { opacity: 1; }
+    .gal-overlay span {
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-size: .8rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Početna</a></li>
+      <li><a href="vesti.html">Vesti</a></li>
+      <li><a href="utakmice.html">Utakmice</a></li>
+      <li><a href="ekipa.html">Ekipa</a></li>
+      <li><a href="galerija.html" class="active">Galerija</a></li>
+      <li><a href="vremeplov.html">Vremeplov</a></li>
+      <li><a href="istorija.html">Istorija</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Početna</a>
+    <a href="vesti.html">Vesti</a>
+    <a href="utakmice.html">Utakmice</a>
+    <a href="ekipa.html">Ekipa</a>
+    <a href="galerija.html">Galerija</a>
+    <a href="vremeplov.html">Vremeplov</a>
+    <a href="istorija.html">Istorija</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg" style="background-image:url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=1600&q=80')"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <h1>GALERIJA <span class="accent">SLIKA</span></h1>
+    <p>Ekipa FK Jedinstva vrednuje i pamti svaki gol, odbranu, i zajedničke trenutke.</p>
+  </div>
+</header>
+
+<section class="section">
+
+  <!-- Category tabs -->
+  <div class="gallery-cats">
+    <button class="cat-btn active" data-cat="all">Sve kategorije</button>
+    <button class="cat-btn" data-cat="utakmice">Utakmice</button>
+    <button class="cat-btn" data-cat="ekipa">Ekipa</button>
+    <button class="cat-btn" data-cat="ostalo">Ostalo</button>
+  </div>
+
+  <!-- Year filters (populated dynamically) -->
+  <div class="gallery-filter" id="yearFilter">
+    <button class="filter-btn active" data-year="all">Sve</button>
+    <!-- year buttons injected here -->
+  </div>
+
+  <!-- Gallery grid -->
+  <div class="gallery-masonry" id="gallery">
+    <div class="gallery-loading"><div class="spinner"></div>Učitavanje galerije…</div>
+  </div>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-prev" onclick="event.stopPropagation(); changePhoto(-1)">‹</button>
+  <button class="lb-next" onclick="event.stopPropagation(); changePhoto(1)">›</button>
+  <div class="lb-img-wrap" onclick="event.stopPropagation()">
+    <img id="lb-img" src="" alt=""/>
+    <p id="lb-caption"></p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <div>
+        <div class="logo-text">FK JEDINSTVO PIROT</div>
+        <p>Ponos Pirota.<br>Osnovan 1927.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Kontakt</h5>
+      <p>Gradski Stadion, Pirot</p>
+      <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="35535e5f50515c5b4641435a1b4746755258545c591b565a58">[email&#160;protected]</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FK Jedinstvo Pirot.<br>Napravio s ❤️ Mladen Nikolov</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
+<script>
+  // ─────────────────────────────────────────────
+  //  CONFIG
+  // ─────────────────────────────────────────────
+  const REPO_OWNER   = 'batamladen';
+  const REPO_NAME    = 'FK-Jedinstvo-Pirot-Slike';
+  const CATEGORIES   = ['utakmice', 'ekipa', 'ostalo'];
+  const IMAGE_EXTS   = ['jpg','jpeg','png','webp','gif','avif'];
+  const API_BASE     = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
+  const RAW_BASE     = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main`;
+
+  // ─────────────────────────────────────────────
+  //  STATE
+  // ─────────────────────────────────────────────
+  let galAllImages      = [];
+  let galVisibleImages  = [];
+  let galCurrentIndex   = 0;
+  let galActiveCat      = 'all';
+  let galActiveYear  = 'all';
+
+  // ─────────────────────────────────────────────
+  //  FETCH HELPERS
+  // ─────────────────────────────────────────────
+  async function ghFetch(path) {
+    const r = await fetch(`${API_BASE}/${path}`);
+    if (!r.ok) return [];
+    return r.json();
+  }
+
+  function isImage(name) {
+    return IMAGE_EXTS.includes(name.split('.').pop().toLowerCase());
+  }
+
+  // ─────────────────────────────────────────────
+  //  LOAD ALL IMAGES FROM REPO
+  // ─────────────────────────────────────────────
+  async function loadAllImages() {
+    const results = [];
+
+    for (const cat of CATEGORIES) {
+      // list year-folders inside category
+      const yearFolders = await ghFetch(cat);
+      const years = yearFolders.filter(e => e.type === 'dir');
+
+      for (const yearDir of years) {
+        const year = yearDir.name;
+        const files = await ghFetch(`${cat}/${year}`);
+
+        for (const file of files) {
+          if (file.type === 'file' && isImage(file.name)) {
+            results.push({
+              src:     `${RAW_BASE}/${cat}/${year}/${encodeURIComponent(file.name)}`,
+              caption: `${cat.charAt(0).toUpperCase() + cat.slice(1)} · ${year}`,
+              cat,
+              year,
+            });
+          }
+        }
+      }
+    }
+
+    return results;
+  }
+
+  // ─────────────────────────────────────────────
+  //  BUILD YEAR FILTER BUTTONS
+  // ─────────────────────────────────────────────
+  function buildYearFilters(images) {
+    const years = [...new Set(images.map(i => i.year))].sort((a, b) => b - a);
+    const container = document.getElementById('yearFilter');
+    // keep the "Sve" button, remove old year buttons
+    [...container.querySelectorAll('[data-year]:not([data-year="all"])')].forEach(b => b.remove());
+
+    years.forEach(year => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.dataset.year = year;
+      btn.textContent = year;
+      btn.addEventListener('click', () => setYear(year, btn));
+      container.appendChild(btn);
+    });
+  }
+
+  // ─────────────────────────────────────────────
+  //  RENDER
+  // ─────────────────────────────────────────────
+  function applyFilters() {
+    galVisibleImages = galAllImages.filter(img => {
+      const catOk  = galActiveCat  === 'all' || img.cat  === galActiveCat;
+      const yearOk = galActiveYear === 'all' || img.year === galActiveYear;
+      return catOk && yearOk;
+    });
+    renderGallery(galVisibleImages);
+  }
+
+  function renderGallery(images) {
+    const grid = document.getElementById('gallery');
+    if (images.length === 0) {
+      grid.innerHTML = '<div class="gallery-empty">Nema slika za ovaj filter.</div>';
+      return;
+    }
+
+    grid.innerHTML = images.map((img, idx) => `
+      <div class="gal-item" onclick="openLightbox(${idx})">
+        <img src="${img.src}" alt="${img.caption}" loading="lazy"/>
+        <div class="gal-overlay"><span>${img.caption}</span></div>
+      </div>
+    `).join('');
+  }
+
+  // ─────────────────────────────────────────────
+  //  FILTER ACTIONS
+  // ─────────────────────────────────────────────
+  function setCat(cat, btn) {
+    galActiveCat = cat;
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function setYear(year, btn) {
+    galActiveYear = year;
+    document.querySelectorAll('#yearFilter .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  // Wire up category buttons
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => setCat(btn.dataset.cat, btn));
+  });
+
+  // Wire up "Sve" year button
+  document.querySelector('#yearFilter [data-year="all"]').addEventListener('click', function() {
+    setYear('all', this);
+  });
+
+  // ─────────────────────────────────────────────
+  //  LIGHTBOX
+  // ─────────────────────────────────────────────
+  function openLightbox(idx) {
+    galCurrentIndex = idx;
+    showPhoto();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function changePhoto(dir) {
+    galCurrentIndex = (galCurrentIndex + dir + galVisibleImages.length) % galVisibleImages.length;
+    showPhoto();
+  }
+
+  function showPhoto() {
+    const img = galVisibleImages[galCurrentIndex];
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lb-caption').textContent = img.caption;
+  }
+
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowRight') changePhoto(1);
+    if (e.key === 'ArrowLeft')  changePhoto(-1);
+    if (e.key === 'Escape')     closeLightbox();
+  });
+
+  // ─────────────────────────────────────────────
+  //  INIT
+  // ─────────────────────────────────────────────
+  (async () => {
+    try {
+      galAllImages = await loadAllImages();
+      buildYearFilters(galAllImages);
+      applyFilters();
+    } catch (err) {
+      document.getElementById('gallery').innerHTML =
+        '<div class="gallery-empty">Greška pri učitavanju galerije. Pokušajte ponovo.</div>';
+      console.error(err);
+    }
+  })();
+</script>
+
+</body>
+</html>

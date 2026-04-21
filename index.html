@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">POČETNA</a></li>
+      <li><a href="vesti.html">VESTI</a></li>
+      <li><a href="utakmice.html">UTAKMICE</a></li>
+      <li><a href="ekipa.html">EKIPA</a></li>
+      <li><a href="galerija.html">GALERIJA</a></li>
+      <li><a href="vremeplov.html">VREMEPLOV</a></li>
+      <li><a href="istorija.html">ISTORIJA</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()" aria-label="Meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">POČETNA</a>
+    <a href="vesti.html">VESTI</a>
+    <a href="utakmice.html">UTAKMICE</a>
+    <a href="ekipa.html">EKIPA</a>
+    <a href="galerija.html">GALERIJA</a>
+    <a href="vremeplov.html">VREMEPLOV</a>
+    <a href="istorija.html">ISTORIJA</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Osnovan 1927</div>
+    <div class="hero-title-wrap">
+      <img src="slike/jedinstvo-logo-beo.webp" alt="FK Jedinstvo Pirot" class="hero-crest"/>
+      <h1 class="hero-title">FK JEDINSTVO<br><span class="accent">PIROT</span></h1>
+    </div>
+    <p class="hero-sub">Formirano da bi večno postojalo!</p>
+    <div class="hero-cta">
+      <a href="galerija.html" class="btn-primary">Galerija</a>
+      <a href="ekipa.html" class="btn-ghost">Naša Ekipa</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- NEXT MATCH TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-label">SLEDEĆA UTAKMICA</span>
+    <span class="ticker-content">FK Jedinstvo Pirot <strong>vs</strong> Učitavanje.. &nbsp;·&nbsp; datum &nbsp;·&nbsp; vreme &nbsp;·&nbsp; mesto &nbsp;&nbsp;&nbsp; ★ &nbsp;&nbsp;&nbsp; FK Jedinstvo Pirot <strong>vs</strong> Učitavanje.. &nbsp;·&nbsp; datum &nbsp;·&nbsp; vreme &nbsp;·&nbsp; mesto &nbsp;&nbsp;&nbsp; ★ &nbsp;&nbsp;&nbsp; FK Jedinstvo Pirot <strong>vs</strong> Učitavanje.. &nbsp;·&nbsp; datum &nbsp;·&nbsp; vreme &nbsp;·&nbsp; mesto &nbsp;&nbsp;&nbsp; ★ &nbsp;&nbsp;&nbsp; 
+  </div>
+</div>
+
+<!-- LATEST NEWS -->
+<section class="section news-section">
+  <div class="section-header">
+    <h2>POSLEDNJE <span class="accent">VESTI</span></h2>
+    <a href="vesti.html" class="see-all">SVE VESTI →</a>
+  </div>
+  <div class="news-grid">
+    <article class="news-card news-card--featured">
+      <div class="news-img" style="background-image:url('slike/jedinstvo-1.png')"></div>
+      <div class="news-body">
+        <span class="news-tag"></span>
+        <h3>Jedinstvo se vraca u zonu!</h3>
+        <p>text text text text text texttext text text text text text.</p>
+        <span class="news-date">28 Feb 2026</span>
+      </div>
+    </article>
+    <article class="news-card">
+      <div class="news-img" style="background-image:url('slike/jedinstvo-2.png')"></div>
+      <div class="news-body">
+        <span class="news-tag">Transfer</span>
+        <h3>Novo pojačanje</h3>
+        <span class="news-date">25 Feb 2026</span>
+      </div>
+    </article>
+    <article class="news-card">
+      <div class="news-img" style="background-image:url('slike/slika1.jpg')"></div>
+      <div class="news-body">
+        <span class="news-tag">Izveštaj sa utakmice</span>
+        <h3>Naslov</h3>
+        <span class="news-date">21 Feb 2026</span>
+      </div>
+    </article>
+    <article class="news-card">
+      <div class="news-img" style="background-image:url('slike/slika2.png')"></div>
+      <div class="news-body">
+        <span class="news-tag"></span>
+        <h3>Naslov</h3>
+        <span class="news-date">18 Feb 2026</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- LAST RESULT + NEXT MATCH -->
+<section class="results-banner">
+  <div class="result-block" id="block-last">
+    <span class="rb-label">POSLEDNJI REZULTAT</span>
+    <div class="rb-fixture">
+      <span class="rb-team home" id="lr-home">Učitavanje...</span>
+      <span class="rb-score" id="lr-score">–</span>
+      <span class="rb-team away" id="lr-away">Učitavanje...</span>
+    </div>
+    <span class="rb-date" id="lr-date">Učitavanje...</span>
+  </div>
+
+  <div class="rb-divider"></div>
+
+  <div class="result-block" id="block-next">
+    <span class="rb-label">SLEDEĆA UTAKMICA</span>
+    <div class="rb-fixture">
+      <span class="rb-team home" id="nm-home">Učitavanje...</span>
+      <span class="rb-score rb-score--upcoming">vs</span>
+      <span class="rb-team away" id="nm-away">Učitavanje...</span>
+    </div>
+    <span class="rb-date" id="nm-date">Učitavanje...</span>
+  </div>
+</section>
+
+<!-- SQUAD PREVIEW -->
+<section class="section squad-preview">
+  <div class="section-header">
+    <h2>NAŠA <span class="accent">EKIPA</span></h2>
+    <a href="ekipa.html" class="see-all">CELA EKIPA →</a>
+  </div>
+  <div class="squad-grid">
+    <div class="player-card">
+      <div class="player-num">1</div>
+      <div class="player-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="player-info">
+        <span class="player-pos">GK</span>
+        <h4>Ognjen Ilić</h4>
+      </div>
+    </div>
+    <div class="player-card">
+      <div class="player-num">5</div>
+      <div class="player-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="player-info">
+        <span class="player-pos">CB</span>
+        <h4>Petrović Robert</h4>
+      </div>
+    </div>
+    <div class="player-card">
+      <div class="player-num">8</div>
+      <div class="player-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="player-info">
+        <span class="player-pos">MF</span>
+        <h4>Vasov Luka</h4>
+      </div>
+    </div>
+    <div class="player-card">
+      <div class="player-num">10</div>
+      <div class="player-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="player-info">
+        <span class="player-pos">CB</span>
+        <h4>Cvetković Mladen</h4>
+      </div>
+    </div>
+    <div class="player-card">
+      <div class="player-num">9</div>
+      <div class="player-img" style="background-image:url('https://imgs.search.brave.com/iJweFlGDdLh7pETtmn9EzmCH4oLvJ9O9kYNeBJdbMpc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLmdl/dHR5d2FsbHBhcGVy/cy5jb20vd3AtY29u/dGVudC91cGxvYWRz/LzIwMjMvMDEvUm9u/YWxkby1BbC1OYXNz/ci5qcGc')"></div>
+      <div class="player-info">
+        <span class="player-pos">ST</span>
+        <h4>Matejić Vladimir</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY TEASER -->
+<section class="gallery-teaser">
+  <div class="gt-overlay"></div>
+  <div class="gt-content">
+    <h2>GALERIJA</h2>
+    <p>Mesto gde čuvamo naše slike i uspomene</p>
+    <a href="galerija.html" class="btn-primary gt-btn">OTVORI GALERIJU</a>
+  </div>
+  <div class="gt-grid">
+    <div class="gt-img" style="background-image:url('slike/slika1.jpg')"></div>
+    <div class="gt-img" style="background-image:url('slike/slika2.png')"></div>
+    <div class="gt-img" style="background-image:url('slike/jedinstvo-1.png')"></div>
+    <div class="gt-img" style="background-image:url('slike/jedinstvo-2.png')"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <div>
+        <div class="logo-text">FK JEDINSTVO PIROT</div>
+        <p>Ponos Pirota.<br>Osnovan 1927.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Kontakt</h5>
+      <p>Gradski Stadion, Pirot</p>
+      <p>jedinstvo.rs@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FK Jedinstvo Pirot.<br>Napravio s ❤️ Mladen Nikolov</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script src="fixtures.js"></script>
+</body>
+</html>

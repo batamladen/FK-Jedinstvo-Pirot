@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Istorija — FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+  <style>
+
+    :root {
+      --red:          #e0b000;
+      --gold:         #C9A84C;
+      --grey1:        #1A1A1A;
+      --grey2:        #444;
+      --grey3:        #888;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    .hist-hero {
+      position: relative;
+      height: 100vh; min-height: 600px;
+      display: flex; align-items: flex-end;
+      padding: 0 0 5rem 0;
+      overflow: hidden;
+    }
+    .hist-hero-bg {
+      position: absolute; inset: 0;
+      background: url('slike/foto1.webp') center/cover no-repeat;
+      filter: grayscale(100%) brightness(.35);
+      transform: scale(1.04);
+      transition: transform 12s ease;
+    }
+    .hist-hero:hover .hist-hero-bg { transform: scale(1.0); }
+    .hist-hero-grain {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+      opacity: .5; pointer-events: none;
+    }
+    .hist-hero-gradient {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,.5) 40%, transparent 80%);
+    }
+    .hist-hero-content {
+      position: relative; z-index: 2;
+      max-width: 1400px; width: 100%; margin: 0 auto;
+      padding: 0 2rem;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: flex-end; gap: 3rem;
+    }
+    .hist-hero-eyebrow {
+      display: inline-block;
+      font-size: .7rem; font-weight: 700; letter-spacing: .2em;
+      color: var(--red); text-transform: uppercase;
+      border-left: 3px solid var(--red); padding-left: .75rem;
+      margin-bottom: 1rem;
+    }
+    .hist-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 12vw, 11rem);
+      line-height: .9; letter-spacing: .02em;
+    }
+    .hist-hero h1 .yr { color: var(--red); display: block; }
+    .hist-hero-since { text-align: right; }
+    .hist-hero-since .big {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 7rem);
+      color: rgba(255,255,255,.08);
+      line-height: 1; display: block;
+    }
+    .hist-hero-since p {
+      font-size: .75rem; color: var(--grey3);
+      text-transform: uppercase; letter-spacing: .15em; margin-top: .5rem;
+    }
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10; display: flex; flex-direction: column;
+      align-items: center; gap: .5rem;
+      animation: hist-bob 2s ease-in-out infinite;
+    }
+    .scroll-hint span { font-size: .65rem; letter-spacing: .15em; color: var(--grey3); }
+    .scroll-hint svg { opacity: .4; }
+    @keyframes hist-bob {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── SECTION WRAPPER ───────────────────────────────── */
+    .hist-section {
+      max-width: 1400px; margin: 0 auto; padding: 6rem 2rem;
+    }
+    .hist-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .25em;
+      color: var(--red); text-transform: uppercase;
+      margin-bottom: 1rem; display: block;
+    }
+    .hist-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1; margin-bottom: 2rem;
+    }
+    hr.hist-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin: 0;
+    }
+
+    /* ─── INTRO SPLIT ───────────────────────────────────── */
+    .intro-wrap { background: var(--grey1); }
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; min-height: 70vh;
+    }
+    .intro-photo { position: relative; overflow: hidden; }
+    .intro-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: sepia(60%) brightness(.8) contrast(1.1);
+      display: block; transition: transform 8s ease, filter .4s;
+    }
+    .intro-photo:hover img {
+      transform: scale(1.03);
+      filter: sepia(30%) brightness(.9) contrast(1.1);
+    }
+    .intro-photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,.8), transparent);
+      font-size: .65rem; letter-spacing: .1em; color: var(--grey3);
+      text-transform: uppercase;
+    }
+    .intro-text {
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .intro-text .lead {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 600; line-height: 1.5;
+      color: #fff; margin-bottom: 2rem;
+    }
+    .intro-text p {
+      font-size: 1rem; line-height: 1.75;
+      color: var(--grey3); margin-bottom: 1.25rem;
+    }
+    .stat-row {
+      display: flex; gap: 3rem; margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,.08); padding-top: 2rem;
+    }
+    .stat-item .num {
+      font-family: var(--font-display);
+      font-size: 3.5rem; line-height: 1; color: var(--red);
+    }
+    .stat-item .lbl {
+      font-size: .7rem; letter-spacing: .15em;
+      color: var(--grey3); text-transform: uppercase; margin-top: .25rem;
+    }
+
+    /* ─── TIMELINE ──────────────────────────────────────── */
+    .timeline-wrap { background: #0a0a0a; position: relative; }
+    .timeline-wrap::before {
+      content: '';
+      position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(200,16,46,.4) 10%, rgba(200,16,46,.4) 90%, transparent);
+      transform: translateX(-50%);
+    }
+    .timeline { display: flex; flex-direction: column; position: relative; }
+    .tl-item {
+      display: grid; grid-template-columns: 1fr 60px 1fr;
+      align-items: start; padding: 3rem 0;
+    }
+    .tl-item:nth-child(odd)  .tl-content { order: 1; text-align: right; padding-right: 3rem; }
+    .tl-item:nth-child(odd)  .tl-spacer  { order: 2; }
+    .tl-item:nth-child(odd)  .tl-empty   { order: 3; }
+    .tl-item:nth-child(even) .tl-content { order: 3; text-align: left; padding-left: 3rem; }
+    .tl-item:nth-child(even) .tl-spacer  { order: 2; }
+    .tl-item:nth-child(even) .tl-empty   { order: 1; }
+    .tl-spacer {
+      display: flex; justify-content: center;
+      padding-top: .3rem; position: relative;
+    }
+    .tl-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--red); border: 3px solid #0a0a0a;
+      box-shadow: 0 0 0 1px var(--red);
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .tl-year {
+      font-family: var(--font-display);
+      font-size: 1.2rem; color: var(--red);
+      letter-spacing: .05em; margin-bottom: .5rem; display: block;
+    }
+    .tl-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem; line-height: 1.1; margin-bottom: .75rem;
+    }
+    .tl-content p { font-size: .9rem; line-height: 1.7; color: var(--grey3); }
+
+    /* ─── FULLBLEED ─────────────────────────────────────── */
+    .hist-fullbleed {
+      position: relative; height: 60vh; min-height: 400px; overflow: hidden;
+    }
+    .hist-fullbleed img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: sepia(80%) brightness(.5) contrast(1.2);
+      display: block; transform: scale(1.05);
+      transition: transform 10s ease;
+    }
+    .hist-fullbleed:hover img { transform: scale(1.0); }
+    .hist-fullbleed-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,16,46,.15), transparent 60%);
+    }
+    .hist-fullbleed-text {
+      position: absolute; bottom: 3rem; right: 3rem;
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: .9; text-align: right;
+      color: rgba(255,255,255,.12); pointer-events: none;
+    }
+
+    /* ─── EPOHE ─────────────────────────────────────────── */
+    .epohe-wrap { background: var(--grey1); }
+    .epohe-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: rgba(255,255,255,.06);
+    }
+    .epoha {
+      background: var(--grey1); padding: 3rem 2.5rem;
+      position: relative; overflow: hidden; transition: background .3s;
+    }
+    .epoha:hover { background: #222; }
+    .epoha::before {
+      content: attr(data-num);
+      position: absolute; right: 1.5rem; top: 1rem;
+      font-family: var(--font-display); font-size: 8rem; line-height: 1;
+      color: rgba(255,255,255,.03); pointer-events: none; transition: color .3s;
+    }
+    .epoha:hover::before { color: rgba(200,16,46,.06); }
+    .epoha-period {
+      font-family: var(--font-display);
+      font-size: 1.8rem; color: var(--red); margin-bottom: .5rem;
+    }
+    .epoha h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.1;
+    }
+    .epoha p { font-size: .875rem; line-height: 1.7; color: var(--grey3); }
+    .epoha-tag {
+      display: inline-block; margin-top: 1.5rem; padding: .3rem .75rem;
+      font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    }
+    .epoha-tag.up  { background: rgba(200,16,46,.15); color: var(--red); }
+    .epoha-tag.mid { background: rgba(201,168,76,.1);  color: var(--gold); }
+
+    /* ─── KNJIGA ─────────────────────────────────────────── */
+    .knjiga-wrap { background: var(--red); position: relative; overflow: hidden; }
+    .knjiga-wrap::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .knjiga-grid {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .knjiga-cover-mock {
+      width: 220px; height: 300px; background: #0a0a0a;
+      border-radius: 4px 12px 12px 4px;
+      box-shadow: -8px 8px 40px rgba(0,0,0,.5), inset -4px 0 8px rgba(0,0,0,.3);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem 1.5rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .knjiga-cover-mock::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 12px;
+      background: linear-gradient(to right, rgba(255,255,255,.08), transparent);
+    }
+    .knjiga-spine-line {
+      position: absolute; left: 18px; top: 0; bottom: 0; width: 1px;
+      background: rgba(200,16,46,.3);
+    }
+    .knjiga-cover-emblem {
+      font-family: var(--font-display); font-size: 3.5rem; color: var(--red);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .knjiga-cover-title {
+      font-family: var(--font-display); font-size: .85rem; letter-spacing: .06em;
+      color: #fff; line-height: 1.3; margin-bottom: .75rem;
+    }
+    .knjiga-cover-sub {
+      font-size: .6rem; letter-spacing: .1em; color: var(--grey3); text-transform: uppercase;
+    }
+    .knjiga-cover-author {
+      margin-top: auto; font-size: .65rem; color: var(--grey3); letter-spacing: .08em;
+    }
+    .knjiga-text { position: relative; z-index: 1; }
+    .knjiga-eyebrow {
+      display: inline-block;
+      font-size: .65rem; font-weight: 700; letter-spacing: .2em;
+      color: rgba(255,255,255,.6); text-transform: uppercase;
+      border-left: 3px solid rgba(255,255,255,.4); padding-left: .75rem;
+      margin-bottom: 1rem;
+    }
+    .knjiga-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05; color: #fff; margin-bottom: 1.5rem;
+    }
+    .knjiga-text p {
+      font-size: 1.05rem; line-height: 1.75;
+      color: rgba(255,255,255,.8); margin-bottom: 1.25rem; max-width: 560px;
+    }
+    .knjiga-quote {
+      margin: 2rem 0; padding: 1.5rem 2rem;
+      border-left: 4px solid rgba(255,255,255,.3); background: rgba(0,0,0,.2);
+    }
+    .knjiga-quote blockquote {
+      font-size: 1.15rem; font-style: italic; color: #fff; line-height: 1.6;
+    }
+    .knjiga-quote cite {
+      display: block; margin-top: .75rem;
+      font-size: .75rem; color: rgba(255,255,255,.5);
+      font-style: normal; letter-spacing: .1em;
+    }
+
+    /* ─── FOTO GRID ─────────────────────────────────────── */
+    .fotogrid-wrap { background: #0a0a0a; }
+    .fotogrid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px; gap: 3px;
+    }
+    .fotocell { overflow: hidden; position: relative; background: var(--grey1); }
+    .fotocell:first-child { grid-row: 1 / 3; }
+    .fotocell img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: sepia(70%) brightness(.65) contrast(1.15);
+      transition: filter .5s, transform .6s; display: block;
+    }
+    .fotocell:hover img {
+      filter: sepia(20%) brightness(.85) contrast(1.1); transform: scale(1.04);
+    }
+    .fotocell-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: .5rem;
+      background: linear-gradient(135deg, #1a1a1a, #111);
+    }
+    .fotocell-placeholder span {
+      font-family: var(--font-display); font-size: .7rem; letter-spacing: .2em;
+      color: rgba(255,255,255,.15); text-transform: uppercase;
+    }
+
+    /* ─── REVEAL ANIMATIONS ─────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hist-hero-content { grid-template-columns: 1fr; }
+      .hist-hero-since { display: none; }
+      .intro-grid { grid-template-columns: 1fr; }
+      .intro-photo { height: 50vw; max-height: 400px; }
+      .intro-text { padding: 3rem 2rem; }
+      .timeline-wrap::before { left: 2rem; }
+      .tl-item { grid-template-columns: 40px 1fr; }
+      .tl-item:nth-child(odd)  .tl-content,
+      .tl-item:nth-child(even) .tl-content { order: 2; text-align: left; padding-left: 1.5rem; padding-right: 0; }
+      .tl-item:nth-child(odd)  .tl-spacer,
+      .tl-item:nth-child(even) .tl-spacer  { order: 1; justify-content: flex-start; }
+      .tl-empty { display: none; }
+      .epohe-grid { grid-template-columns: 1fr; }
+      .knjiga-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .knjiga-cover-mock { margin: 0 auto; }
+      .fotogrid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .fotocell:first-child { grid-row: auto; }
+      .nav-links { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ══════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Početna</a></li>
+      <li><a href="vesti.html">Vesti</a></li>
+      <li><a href="utakmice.html">Utakmice</a></li>
+      <li><a href="ekipa.html">Ekipa</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="vremeplov.html">Vremeplov</a></li>
+      <li><a href="istorija.html" class="active">Istorija</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()" aria-label="Meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">POČETNA</a>
+    <a href="vesti.html">VESTI</a>
+    <a href="utakmice.html">UTAKMICE</a>
+    <a href="ekipa.html">EKIPA</a>
+    <a href="galerija.html">GALERIJA</a>
+    <a href="vremeplov.html">VREMEPLOV</a>
+    <a href="istorija.html">ISTORIJA</a>
+
+  </div>
+</nav>
+
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<header class="hist-hero">
+  <div class="hist-hero-bg"></div>
+  <div class="hist-hero-grain"></div>
+  <div class="hist-hero-gradient"></div>
+
+  <div class="hist-hero-content">
+    <div>
+      <span class="hist-hero-eyebrow">FK Jedinstvo Pirot · Klub s tradicijom</span>
+      <h1>ISTORIJA<br><span class="yr">KLUBA</span></h1>
+    </div>
+    <div class="hist-hero-since">
+      <span class="big">1927</span>
+      <p>Godina osnivanja</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <rect x="1" y="1" width="14" height="22" rx="7" stroke="white" stroke-width="1.5"/>
+      <rect x="7" y="5" width="2" height="5" rx="1" fill="white"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══ INTRO ═════════════════════════════════════════════ -->
+<div class="intro-wrap">
+  <div class="intro-grid">
+    <div class="intro-photo">
+      <img src="slike/jedinstvo-istorija1.jpg" alt="FK Jedinstvo - stara fotografija tima"/>
+      <div class="intro-photo-caption">FK Jedinstvo Pirot · Pioniri pirotskog fudbala</div>
+    </div>
+    <div class="intro-text">
+      <span class="hist-label reveal">Poreklo</span>
+      <p class="lead reveal reveal-d1">
+        Osnovano da bi večno postojalo. Više od devedeset godina tradicije, ponosa i zajedništva.
+      </p>
+      <p class="reveal reveal-d2">
+        Pirotski fudbal ima korene još u prvim godinama između dva svetska rata. Kada je
+        <strong>1927. godine</strong> u Novoj Maloj formiran loptački klub „Jedinstvo",
+        započeta je priča koja traje do danas. Rivalstvo i strast koji su tog prvog dana
+        zapljusnuli pirotske terene nikada nisu ugašeni.
+      </p>
+      <p class="reveal reveal-d3">
+        Marta 1932. formirana je <strong>Nišavska loptačka župa</strong> — pet klubova,
+        jedinstven duh: Omladinac, Jedinstvo, Pobeda, Napredak i Gnjilan. Pirot je već tada
+        imao razvijenu fudbalsku scenu, a Jedinstvo je na njoj zauzimalo posebno mesto.
+      </p>
+      <p class="reveal reveal-d3">
+        Prve lopte dolazile su iz Francuske — zahvaljujući braći Nikolić koji su ih doneli
+        kući posle boravka u inostranstvu. Prve utakmice igrale su se u dvorištu Gimnazije,
+        pred retkim gledaocima koji su tek upoznavali ovu novu igru.
+      </p>
+      <div class="stat-row reveal reveal-d4">
+        <div class="stat-item">
+          <div class="num">1927</div>
+          <div class="lbl">Godina osnivanja</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">97+</div>
+          <div class="lbl">Godina tradicije</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">10×</div>
+          <div class="lbl">Kupa grada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="hist-divider"/>
+
+
+<!-- ═══ FULLBLEED 1 ════════════════════════════════════════ -->
+<div class="hist-fullbleed">
+  <img src="slike/jedinstvo-istorija2.jpg" alt="FK Jedinstvo - tim u stroju" loading="lazy"/>
+  <div class="hist-fullbleed-overlay"></div>
+  <div class="hist-fullbleed-text">JEDINSTVO<br>PIROT</div>
+</div>
+
+<!-- ═══ TRI EPOHE ═════════════════════════════════════════ -->
+<div class="epohe-wrap">
+  <div class="hist-section">
+    <span class="hist-label reveal">Karakteri vremena</span>
+    <h2 class="hist-title reveal reveal-d1">TRI EPOHE<br>JEDNOG KLUBA</h2>
+
+    <div class="epohe-grid">
+      <div class="epoha reveal" data-num="I">
+        <div class="epoha-period">1927 — 1945</div>
+        <h3>PIONIRI PIROTSKOG FUDBALA</h3>
+        <p>Vreme prvih lopti i prvih terena. Entuzijazam koji ne poznaje granice ni uslove. Fudbal dolazi u Pirot i odmah pronalazi vernike. Braća Nikolić donose prvu pravu loptu iz Francuske, a dvorište Gimnazije postaje prvo igralište.</p>
+        <span class="epoha-tag up">Osnivanje</span>
+      </div>
+      <div class="epoha reveal reveal-d1" data-num="II">
+        <div class="epoha-period">1945 — 2000</div>
+        <h3>GRADNJA TRADICIJE</h3>
+        <p>Decenijama Jedinstvo gradi sopstveni identitet. Generacije navijača i igrača tkaju tkivo kluba. Usponi i padovi, promene liga i naziva — ali identitet ostaje nepromenjen: crno-žuti dres, pirotski ponos.</p>
+        <span class="epoha-tag mid">Tradicija</span>
+      </div>
+      <div class="epoha reveal reveal-d2" data-num="III">
+        <div class="epoha-period">2000 — Danas</div>
+        <h3>MODERNA ERA</h3>
+        <p>Novi vek, nova energija. Klub se vraća na staze slave. Viceprvak Pirotske okružne lige, takmičenje u Zoni Istok, i ambicije koje rastu svakom sezonom.</p>
+        <span class="epoha-tag up">Rast</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FULLBLEED 2 ════════════════════════════════════════ -->
+<div class="hist-fullbleed" style="height:50vh">
+  <img src="slike/jedinstvo-istorija2.jpg" alt="SD Jedinstvo - sportsko društvo"
+       loading="lazy" style="object-position:center 30%"/>
+  <div class="hist-fullbleed-overlay"></div>
+  <div class="hist-fullbleed-text" style="font-size:clamp(2rem,5vw,4.5rem)">
+    SPORTSKO<br>DRUŠTVO<br>JEDINSTVO
+  </div>
+</div>
+
+<!-- ═══ KNJIGA PROMO ══════════════════════════════════════ -->
+<div class="knjiga-wrap">
+  <div class="hist-section">
+    <div class="knjiga-grid">
+
+      <div class="reveal">
+        <div class="knjiga-cover-mock">
+          <div class="knjiga-spine-line"></div>
+          <div class="knjiga-cover-emblem">FKJ</div>
+          <div class="knjiga-cover-title">FORMIRANO DA BI<br>VEČNO POSTOJALO</div>
+          <div class="knjiga-cover-sub">Monografija SD Jedinstvo</div>
+          <div class="knjiga-cover-author" style="margin-top:2rem">Borivoje Petrović</div>
+        </div>
+      </div>
+
+      <div class="knjiga-text reveal reveal-d2">
+        <span class="knjiga-eyebrow">📖 Monografija kluba</span>
+        <h2>OSNOVANO <br>DA BI VEČNO POSTOJALO</h2>
+        <p>
+          Sve što su generacije igrača, trenera i navijača gradili više od devedeset godina —
+          'sabrano' je u jednoj knjizi. Monografija Sportskog društva Jedinstvo iz pera
+          <strong>Borivoja Petrovića</strong> je dokument koji pamti ono što bi pamćenje zaboravilo.
+        </p>
+        <p>
+          Od ratnih i posleratnih godina, sve do
+          modernih takmičenja u Zoni Istok — svaka stranica je svedočanstvo o tome koliko
+          fudbal znači jednom gradu i jednoj zajednici.
+        </p>
+        <div class="knjiga-quote">
+          <blockquote>
+            „Formirano da bi večno postojalo" — ne samo kao naziv monografije, već kao obećanje
+            svakom navijaču koji je ikada bodrio crno-žute.
+          </blockquote>
+          <cite>— Monografija SD Jedinstvo, Borivoje Petrović</cite>
+        </div>
+        <p>
+          Promocija monografije održana je u svečanoj sali pirotske Gimnazije.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOTO GRID ══════════════════════════════════════════ -->
+<div class="fotogrid-wrap">
+  <div class="fotogrid">
+    <div class="fotocell">
+      <img src="slike/jedinstvo-istorija1.jpg" alt="Tim u stroju pred utakmicu" loading="lazy"/>
+    </div>
+    <div class="fotocell">
+      <img src="slike/jedinstvo-istorija1.jpg" alt="Košarkaška sekcija SD Jedinstvo" loading="lazy"/>
+    </div>
+    <div class="fotocell">
+      <img src="slike/jedinstvo-istorija3.jpg" alt="Košarkaška sekcija SD Jedinstvo" loading="lazy"/>
+    </div>
+    <div class="fotocell">
+      <img src="slike/jedinstvo-istorija4.jpg" alt="Košarkaška sekcija SD Jedinstvo" loading="lazy"/>
+    </div>
+    <div class="fotocell">
+      <img src="slike/jedinstvo-istorija5.jpg" alt="Košarkaška sekcija SD Jedinstvo" loading="lazy"/>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-badge logo-badge--lg">FKJ</div>
+      <div>
+        <div class="logo-text" style="font-size:1.1rem">FK JEDINSTVO<br><small>PIROT</small></div>
+        <p>Ponos Pirota.<br>Osnovan 1927.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Kontakt</h5>
+      <p>Gradski Stadion, Pirot</p>
+      <p>jedinstvo.rs@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">    
+    <span>© 2026 FK Jedinstvo Pirot.<br>Napravio s ❤️ Mladen Nikolov</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ── Scroll reveal ──────────────────────────────────────
+  // Izolovano u IIFE — nema konflikta sa 'observer' iz main.js
+  var els = document.querySelectorAll('.reveal');
+  var histObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        histObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  els.forEach(function (el) { histObs.observe(el); });
+
+  // ── Parallax na hero pozadini ──────────────────────────
+  var heroBg = document.querySelector('.hist-hero-bg');
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    if (heroBg && y < window.innerHeight) {
+      heroBg.style.transform = 'scale(1.04) translateY(' + (y * 0.25) + 'px)';
+    }
+  }, { passive: true });
+
+}());
+</script>
+</body>
+</html>

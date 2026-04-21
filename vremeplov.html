@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vremeplov — FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body class="vp-page">
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Početna</a></li>
+      <li><a href="vesti.html">Vesti</a></li>
+      <li><a href="utakmice.html">Utakmice</a></li>
+      <li><a href="ekipa.html">Ekipa</a></li>
+      <li><a href="galerija.html">Galerija</a></li>
+      <li><a href="vremeplov.html" class="active">Vremeplov</a></li>
+      <li><a href="istorija.html">Istorija</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()" aria-label="Meni">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">POČETNA</a>
+    <a href="vesti.html">VESTI</a>
+    <a href="utakmice.html">UTAKMICE</a>
+    <a href="ekipa.html">EKIPA</a>
+    <a href="galerija.html">GALERIJA</a>
+    <a href="vremeplov.html">VREMEPLOV</a>
+    <a href="istorija.html">ISTORIJA</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="vp-hero">
+  <div class="vp-hero-bg"></div>
+  <div class="vp-hero-num" id="heroNum">25</div>
+  <div class="vp-hero-content">
+    <span class="vp-hero-eyebrow">FK JEDINSTVO PIROT · ISTORIJA KLUBA</span>
+    <h1>VREMEPLOV<br><span class="accent">SEZONA</span></h1>
+    <p>Svaka sezona — jedna priča. Vucite polugu da istražite istoriju kluba.</p>
+  </div>
+</header>
+
+<!-- SCRUBBER -->
+<div class="vp-scrubber-wrap">
+  <div class="vp-scrubber-season">
+    SEZONA <span id="scrubberYear">2024/25</span>
+  </div>
+  <div class="vp-scrubber-track-wrap">
+    <div class="vp-scrubber-labels" id="scrubberLabels"></div>
+    <div class="vp-scrubber-track" id="scrubberTrack">
+      <div class="vp-scrubber-rail"></div>
+      <div class="vp-scrubber-fill" id="scrubberFill"></div>
+      <div class="vp-scrubber-ticks" id="scrubberTicks"></div>
+      <div class="vp-scrubber-thumb" id="scrubberThumb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEASONS -->
+<div class="vp-seasons-outer" id="seasonsOuter">
+  <div class="vp-seasons-inner" id="seasonsInner">
+    <div class="vp-loading"><span class="vp-spinner"></span>UČITAVANJE SEZONA...</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-badge logo-badge--lg">FKJ</div>
+      <div>
+        <div class="logo-text" style="font-size:1.1rem">FK JEDINSTVO<br><small>PIROT</small></div>
+        <p>Ponos Pirota.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>KONTAKT</h5>
+      <p>Pirot, Srbija</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 FK Jedinstvo Pirot · Sva prava zadržana</div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+(function () {
+
+  // ═══════════════════════════════════════════════════
+  // CONFIG — dodaj / ukloni sezone ovde
+  // ═══════════════════════════════════════════════════
+  const SEZONE = [
+    { id: 'sezona-2019-20', label: '2019/20' },
+    { id: 'sezona-2020-21', label: '2020/21' },
+    { id: 'sezona-2021-22', label: '2021/22' },
+    { id: 'sezona-2022-23', label: '2022/23' },
+    { id: 'sezona-2023-24', label: '2023/24' },
+    { id: 'sezona-2024-25', label: '2024/25' },
+  ];
+
+  // ═══════════════════════════════════════════════════
+  // STATE
+  // ═══════════════════════════════════════════════════
+  let currentIndex = SEZONE.length - 1;
+  let isDragging   = false;
+  let seasonCache  = {};
+
+  // ═══════════════════════════════════════════════════
+  // DOM REFS
+  // ═══════════════════════════════════════════════════
+  const inner      = document.getElementById('seasonsInner');
+  const thumb      = document.getElementById('scrubberThumb');
+  const track      = document.getElementById('scrubberTrack');
+  const fill       = document.getElementById('scrubberFill');
+  const yearLabel  = document.getElementById('scrubberYear');
+  const heroNum    = document.getElementById('heroNum');
+  const labelsWrap = document.getElementById('scrubberLabels');
+  const ticksWrap  = document.getElementById('scrubberTicks');
+
+  // ═══════════════════════════════════════════════════
+  // SCRUBBER
+  // ═══════════════════════════════════════════════════
+  function buildScrubber() {
+    labelsWrap.innerHTML = '';
+    SEZONE.forEach((s, i) => {
+      const span = document.createElement('span');
+      span.textContent = s.label;
+      span.onclick = () => goTo(i);
+      labelsWrap.appendChild(span);
+    });
+
+    ticksWrap.innerHTML = '';
+    SEZONE.forEach(() => {
+      const t = document.createElement('div');
+      t.className = 'vp-tick';
+      ticksWrap.appendChild(t);
+    });
+
+    updateScrubber();
+  }
+
+  function updateScrubber() {
+    const pct = SEZONE.length > 1 ? currentIndex / (SEZONE.length - 1) : 0;
+
+    thumb.style.left = (pct * 100) + '%';
+    fill.style.width = (pct * 100) + '%';
+    yearLabel.textContent = SEZONE[currentIndex].label;
+
+    const parts = SEZONE[currentIndex].label.split('/');
+    heroNum.textContent = parts[1] ? parts[1] : parts[0].slice(-2);
+
+    labelsWrap.querySelectorAll('span').forEach((s, i) => {
+      s.classList.toggle('active-lbl', i === currentIndex);
+    });
+
+    ticksWrap.querySelectorAll('.vp-tick').forEach((t, i) => {
+      t.classList.toggle('active', i <= currentIndex);
+    });
+
+    inner.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
+
+  // ═══════════════════════════════════════════════════
+  // NAVIGATION
+  // ═══════════════════════════════════════════════════
+  function goTo(index) {
+    const clamped = Math.max(0, Math.min(SEZONE.length - 1, index));
+    if (clamped === currentIndex) return;
+    currentIndex = clamped;
+    updateScrubber();
+    loadSeason(currentIndex);
+  }
+
+  // ═══════════════════════════════════════════════════
+  // DRAG — mouse + touch
+  // ═══════════════════════════════════════════════════
+  function pctFromEvent(e) {
+    const rect    = track.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  }
+
+  function indexFromPct(pct) {
+    return Math.round(pct * (SEZONE.length - 1));
+  }
+
+  thumb.addEventListener('mousedown',  startDrag);
+  thumb.addEventListener('touchstart', startDrag, { passive: true });
+
+  track.addEventListener('click', e => {
+    if (e.target === thumb) return;
+    goTo(indexFromPct(pctFromEvent(e)));
+  });
+
+  function startDrag() {
+    isDragging = true;
+    thumb.classList.add('dragging');
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('touchmove', onDrag, { passive: true });
+    document.addEventListener('mouseup',   endDrag);
+    document.addEventListener('touchend',  endDrag);
+  }
+
+  function onDrag(e) {
+    if (!isDragging) return;
+    const newIndex = indexFromPct(pctFromEvent(e));
+    if (newIndex !== currentIndex) goTo(newIndex);
+  }
+
+  function endDrag() {
+    isDragging = false;
+    thumb.classList.remove('dragging');
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('touchmove', onDrag);
+    document.removeEventListener('mouseup',   endDrag);
+    document.removeEventListener('touchend',  endDrag);
+  }
+
+  // Keyboard arrows — samo kad lightbox nije otvoren
+  document.addEventListener('keydown', e => {
+    const lb = document.getElementById('lightbox');
+    if (lb && lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  goTo(currentIndex - 1);
+    if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+  });
+
+  // ═══════════════════════════════════════════════════
+  // HELPERS
+  // ═══════════════════════════════════════════════════
+  function ordinal(n) {
+    if (!n) return '';
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return s[(v - 20) % 10] || s[v] || s[0];
+  }
+
+  function resultIcon(r) {
+    return r === 'W' ? 'POB' : r === 'D' ? 'NER' : 'POR';
+  }
+
+  // ═══════════════════════════════════════════════════
+  // RENDER
+  // ═══════════════════════════════════════════════════
+  function renderSeason(data, index) {
+    const s   = SEZONE[index];
+    const pct = data.pozicija && data.ukupnoTimova
+      ? Math.round((1 - (data.pozicija - 1) / data.ukupnoTimova) * 100)
+      : 0;
+
+    const pob = (data.rezultati || []).filter(r => r.rezultat === 'W').length;
+    const ner = (data.rezultati || []).filter(r => r.rezultat === 'D').length;
+    const por = (data.rezultati || []).filter(r => r.rezultat === 'L').length;
+
+    const maxGolova = data.strelci && data.strelci.length
+      ? Math.max(...data.strelci.map(p => p.golovi))
+      : 1;
+
+    // ── Rezultati ──
+    const rezultatiHTML = (data.rezultati || []).length
+      ? data.rezultati.map(m => `
+          <div class="vp-match-item">
+            <div class="vp-match-badge ${m.rezultat}">${resultIcon(m.rezultat)}</div>
+            <div class="vp-match-teams">${m.domacin} — ${m.gost}</div>
+            <div class="vp-match-score">${m.golovi}</div>
+          </div>`).join('')
+      : '<div class="vp-empty">NEMA PODATAKA</div>';
+
+    // ── Transferi ──
+    const transferiHTML = (data.transferi || []).length
+      ? data.transferi.map(t => `
+          <div class="vp-transfer-item">
+            <div class="vp-transfer-dir ${t.smer === 'dolazak' ? 'in' : 'out'}">${t.smer === 'dolazak' ? '↓' : '↑'}</div>
+            <div class="vp-transfer-name">${t.igrac}</div>
+            <div class="vp-transfer-club">${t.klub}</div>
+          </div>`).join('')
+      : '<div class="vp-empty">NEMA TRANSFERA</div>';
+
+    // ── Strelci ──
+    const strelciHTML = (data.strelci || []).length
+      ? data.strelci.map((p, i) => `
+          <div class="vp-scorer-item">
+            <div class="vp-scorer-rank">${i + 1}</div>
+            <div class="vp-scorer-name">
+              ${p.ime}
+              ${p.pozicija ? `<span class="vp-scorer-pos"> · ${p.pozicija}</span>` : ''}
+            </div>
+            <div class="vp-scorer-bar-wrap">
+              <div class="vp-scorer-bar" style="width:${Math.round((p.golovi / maxGolova) * 100)}%"></div>
+            </div>
+            <div class="vp-scorer-stats">
+              <div class="vp-scorer-stat">
+                <span class="vp-scorer-stat-n">${p.golovi}</span>
+                <span class="vp-scorer-stat-l">GOL</span>
+              </div>
+              ${p.asistencije != null ? `
+              <div class="vp-scorer-stat">
+                <span class="vp-scorer-stat-n">${p.asistencije}</span>
+                <span class="vp-scorer-stat-l">AST</span>
+              </div>` : ''}
+              ${p.utakmice != null ? `
+              <div class="vp-scorer-stat">
+                <span class="vp-scorer-stat-n">${p.utakmice}</span>
+                <span class="vp-scorer-stat-l">UT</span>
+              </div>` : ''}
+            </div>
+          </div>`).join('')
+      : '<div class="vp-empty">NEMA PODATAKA O STRELCIMA</div>';
+
+    // ── Tabela ──
+    const tabelaHTML = data.tabela && data.tabela.timovi && data.tabela.timovi.length
+      ? `
+        <div class="vp-panel vp-table-panel">
+          <div class="vp-panel-head">
+            <div class="vp-panel-icon">📊</div>
+            <h3>KONAČNA TABELA</h3>
+          </div>
+          <div class="vp-panel-body">
+            <div class="league-table-wrapper" style="background: var(--dark); padding: 0.5rem;">
+              <table class="liga-tabela" style="width:100%; border-collapse:collapse; font-size:0.8rem;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--yellow);">
+                    <th>#</th>
+                    <th class="col-klub" style="text-align:left;">Klub</th>
+                    <th title="Odigrane">OU</th>
+                    <th title="Pobede">POB</th>
+                    <th title="Nerešeno">NER</th>
+                    <th title="Porazi">POR</th>
+                    <th title="Golovi">GR</th>
+                    <th title="Gol razlika" class="col-gd">+/-</th>
+                    <th title="Bodovi">BOD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${data.tabela.timovi.map((t, i) => {
+                    const jeMi = t.ime.toLowerCase().includes('jedinstvo');
+                    const gd = t.dat - t.prim;
+                    const gdStr = gd > 0 ? '+' + gd : '' + gd;
+                    return `
+                      <tr style="${jeMi ? 'background:rgba(245,196,0,0.07); border-left:3px solid var(--yellow);' : ''}">
+                        <td style="padding:6px; text-align:center; color:${jeMi ? 'var(--yellow)' : '#aaa'}">${i + 1}</td>
+                        <td style="padding:6px; text-align:left; font-weight:600; color:${jeMi ? '#fff' : '#ddd'}">${t.ime}</td>
+                        <td style="padding:6px; text-align:center;">${t.ou}</td>
+                        <td style="padding:6px; text-align:center;">${t.pob}</td>
+                        <td style="padding:6px; text-align:center;">${t.ner}</td>
+                        <td style="padding:6px; text-align:center;">${t.por}</td>
+                        <td style="padding:6px; text-align:center;">${t.dat}:${t.prim}</td>
+                        <td style="padding:6px; text-align:center;">${gdStr}</td>
+                        <td style="padding:6px; text-align:center; font-weight:900; color:#fff;">${t.bod}</td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+              ${data.tabela.azurirano ? `<div style="text-align:right; font-size:0.7rem; color:#444; margin-top:0.5rem;">Ažurirano: ${data.tabela.azurirano}</div>` : ''}
+            </div>
+          </div>
+        </div>
+      `
+      : '<div class="vp-panel vp-table-panel"><div class="vp-panel-head"><div class="vp-panel-icon">📊</div><h3>TABELA</h3></div><div class="vp-panel-body"><div class="vp-empty">NEMA PODATAKA O TABELI</div></div></div>';
+
+    // ── Igrači (bez godina) ──
+    const igraciHTML = data.igraci && data.igraci.length
+      ? `
+        <div class="vp-panel vp-players-panel">
+          <div class="vp-panel-head">
+            <div class="vp-panel-icon">👥</div>
+            <h3>REGISTROVANI IGRAČI (${data.igraci.length})</h3>
+          </div>
+          <div class="vp-panel-body">
+            <div class="players-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:0.75rem;">
+              ${data.igraci.map(i => `
+                <div class="player-mini-card" style="background:var(--dark3); border-radius:4px; padding:0.75rem; display:flex; align-items:center; gap:0.75rem; border-left:3px solid var(--yellow);">
+                  <div class="player-number" style="font-family:var(--font-head); font-size:1.4rem; color:var(--yellow); min-width:36px; text-align:center;">${i.broj}</div>
+                  <div style="flex:1;">
+                    <div style="font-weight:600; font-size:0.9rem;">${i.ime}</div>
+                    <div style="display:flex; gap:0.5rem; font-size:0.7rem; color:var(--grey2);">
+                      <span>${i.pozicija}</span>
+                    </div>
+                    <div style="display:flex; gap:0.75rem; margin-top:0.25rem; font-size:0.7rem;">
+                      <span style="color:#22c55e;">⚽ ${i.golovi}</span>
+                      <span style="color:var(--yellow);">🟨 ${i.zuta || 0}</span>
+                      <span style="color:#ef4444;">🟥 ${i.crvena || 0}</span>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `
+      : '<div class="vp-panel vp-players-panel"><div class="vp-panel-head"><div class="vp-panel-icon">👥</div><h3>REGISTROVANI IGRAČI</h3></div><div class="vp-panel-body"><div class="vp-empty">NEMA PODATAKA O IGRAČIMA</div></div></div>';
+
+    return `
+      <div class="vp-season">
+        <div class="vp-season-header">
+          <div class="vp-season-year">${s.label}</div>
+          <div class="vp-season-meta">
+            <h2>FK JEDINSTVO <span class="accent">${s.label}</span></h2>
+            <p>${data.liga || 'Okružna liga Pirot'}</p>
+          </div>
+          ${data.komentar ? `<div class="vp-season-badge">${data.komentar}</div>` : ''}
+        </div>
+
+        <div class="vp-season-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+
+          <!-- POZICIJA -->
+          <div class="vp-panel vp-pos-panel">
+            <div class="vp-panel-head">
+              <div class="vp-panel-icon">📍</div>
+              <h3>POZICIJA NA TABELI</h3>
+            </div>
+            <div class="vp-panel-body">
+              <div class="vp-position-display">
+                <div class="vp-pos-number">
+                  ${data.pozicija || '—'}<sup>${ordinal(data.pozicija)}</sup>
+                </div>
+                <div class="vp-pos-info">
+                  <div class="vp-pos-liga">${data.liga || ''}</div>
+                  <div class="vp-pos-teams">${data.ukupnoTimova ? 'od ' + data.ukupnoTimova + ' timova' : ''}</div>
+                  <div class="vp-pos-bar">
+                    <div class="vp-pos-bar-fill" style="width:${pct}%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="vp-pos-record">
+                <div class="vp-rec-item">
+                  <span class="vp-rec-num w">${pob}</span>
+                  <span class="vp-rec-lbl">POBEDE</span>
+                </div>
+                <div class="vp-rec-item">
+                  <span class="vp-rec-num d">${ner}</span>
+                  <span class="vp-rec-lbl">NEREŠENO</span>
+                </div>
+                <div class="vp-rec-item">
+                  <span class="vp-rec-num l">${por}</span>
+                  <span class="vp-rec-lbl">PORAZI</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REZULTATI (veći panel) -->
+          <div class="vp-panel vp-results-panel" style="grid-row: span 2;">
+            <div class="vp-panel-head">
+              <div class="vp-panel-icon">⚽</div>
+              <h3>REZULTATI</h3>
+            </div>
+            <div class="vp-panel-body">
+              ${rezultatiHTML}
+            </div>
+          </div>
+
+          <!-- TABELA -->
+          ${tabelaHTML}
+
+          <!-- IGRAČI -->
+          ${igraciHTML}
+
+          <!-- TRANSFERI -->
+          <div class="vp-panel vp-transfers-panel">
+            <div class="vp-panel-head">
+              <div class="vp-panel-icon">🔄</div>
+              <h3>TRANSFERI</h3>
+            </div>
+            <div class="vp-panel-body">
+              ${transferiHTML}
+            </div>
+          </div>
+
+          <!-- STRELCI (široki panel preko cele širine) -->
+          <div class="vp-panel vp-scorers-panel" style="grid-column: span 2;">
+            <div class="vp-panel-head">
+              <div class="vp-panel-icon">🥇</div>
+              <h3>STRELCI I STATISTIKE</h3>
+            </div>
+            <div class="vp-panel-body">
+              ${strelciHTML}
+            </div>
+          </div>
+
+        </div>
+      </div>`;
+  }
+
+  // ═══════════════════════════════════════════════════
+  // LOAD SEASON (fetch JSON, cache, render)
+  // ═══════════════════════════════════════════════════
+  async function loadSeason(index) {
+    const s  = SEZONE[index];
+    const el = inner.children[index];
+    if (!el || el.dataset.loaded === '1') return;
+
+    if (seasonCache[s.id]) {
+      el.innerHTML = renderSeason(seasonCache[s.id], index);
+      el.dataset.loaded = '1';
+      return;
+    }
+
+    el.innerHTML = '<div class="vp-loading"><span class="vp-spinner"></span>UČITAVANJE...</div>';
+
+    try {
+      const res = await fetch(`sezone/${s.id}.json`);
+      if (!res.ok) throw new Error('not found');
+      const data = await res.json();
+      seasonCache[s.id] = data;
+      el.innerHTML = renderSeason(data, index);
+      el.dataset.loaded = '1';
+    } catch {
+      el.innerHTML = `
+        <div class="vp-season">
+          <div class="vp-season-header">
+            <div class="vp-season-year">${s.label}</div>
+            <div class="vp-season-meta">
+              <h2>FK JEDINSTVO <span class="accent">${s.label}</span></h2>
+              <p>Podaci nisu dostupni</p>
+            </div>
+          </div>
+          <div class="vp-loading" style="color:var(--grey2);padding:4rem 2rem">
+            PODACI ZA SEZONU ${s.label} NISU JOŠ UNETI
+          </div>
+        </div>`;
+      el.dataset.loaded = '1';
+    }
+  }
+
+  // ═══════════════════════════════════════════════════
+  // INIT
+  // ═══════════════════════════════════════════════════
+  function init() {
+    inner.innerHTML = '';
+    SEZONE.forEach(() => {
+      const slide = document.createElement('div');
+      slide.style.cssText = 'min-width:100%;width:100%;flex-shrink:0;';
+      inner.appendChild(slide);
+    });
+
+    buildScrubber();
+    currentIndex = SEZONE.length - 1;
+    updateScrubber();
+    loadSeason(currentIndex);
+  }
+
+  init();
+
+})();
+</script>
+</body>
+</html>

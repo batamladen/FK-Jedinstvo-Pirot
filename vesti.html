@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vesti — FK Jedinstvo Pirot</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <span class="logo-text">FK JEDINSTVO<br><small>PIROT</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">POČETNA</a></li>
+      <li><a href="vesti.html" class="active">VESTI</a></li>
+      <li><a href="utakmice.html">UTAKMICE</a></li>
+      <li><a href="ekipa.html">EKIPA</a></li>
+      <li><a href="galerija.html">GALERIJA</a></li>
+      <li><a href="vremeplov.html">VREMEPLOV</a></li>
+      <li><a href="istorija.html">ISTORIJA</a></li>
+    </ul>
+    <button class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">POČETNA</a>
+    <a href="vesti.html">VESTI</a>
+    <a href="utakmice.html">UTAKMICE</a>
+    <a href="ekipa.html">EKIPA</a>
+    <a href="galerija.html">GALERIJA</a>
+    <a href="vremeplov.html">VREMEPLOV</a>
+    <a href="istorija.html">ISTORIJA</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="page-header-bg" style="background-image:url('https://images.unsplash.com/photo-1434648957308-5e6a859697e8?w=1600&q=80')"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <h1>POSLEDNJE <span class="accent">VESTI</span></h1>
+    <p>Zvanične vesti ekipe FK Jedinstvo Pirot</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="news-filter">
+    <button class="filter-btn active" data-filter="sve">Sve</button>
+    <button class="filter-btn" data-filter="generalno">Generalno</button>
+    <button class="filter-btn" data-filter="utakmica">Utakmica</button>
+    <button class="filter-btn" data-filter="transfer">Transfer</button>
+  </div>
+
+  <div class="news-grid news-grid--full">
+    <article class="news-card news-card--featured" data-category="generalno">
+      <div class="news-img" style="background-image:url('https://imgs.search.brave.com/lqHFpr9SYM2pOBKOVsjtwa1Jf8aAhq3GuJVxoL26xVQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mc3Jp/cy5vcmcucnMvd3At/Y29udGVudC91cGxv/YWRzLzIwMjQvMDcv/SmF2bmktcG96aXYt/emEtcG9wdW51LXVw/cmF6bmplbm9nLW1l/c3RhLXNycHNrYS1s/aWdhLWlzdG9rLWZz/cmlzLW5hc2xvdm5h/LmpwZw')"></div>
+      <div class="news-body">
+        <span class="news-tag">OPSTE VESTI</span>
+        <h3>Naslov!</h3>
+        <p>text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text </p>
+        <span class="news-date">28 Jun 2026</span>
+      </div>
+    </article>
+
+    <article class="news-card " data-category="generalno">
+      <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?w=600&q=80')"></div>
+      <div class="news-body">
+        <span class="news-tag">Transfer</span>
+        <h3>Naslov</h3>
+        <p>text text text text text text text text text text text text text text text text text text text text text text text text text text texttext text text text text text text text text</p>
+        <span class="news-date">25 Feb 2026</span>
+      </div>
+    </article>
+
+    <article class="news-card" data-category="generalno">
+      <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80')"></div>
+      <div class="news-body">
+        <span class="news-tag">Izveštaj Utakmice</span>
+        <h3>Naslov</h3>
+        <p>text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text	text	text	text	text	text	text	text	text.</p>
+        <span class="news-date">21 Feb 2026</span>
+      </div>
+    </article>
+
+    <article class="news-card" data-category="generalno">
+      <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?w=600&q=80')"></div>
+      <div class="news-body">
+        <span class="news-tag">Transfer</span>
+        <h3>Naslov</h3>
+        <p>text text text text text text text text text text text text text text text text text text text text text text text text text text texttext text text text text text text text text</p>
+        <span class="news-date">18 Feb 2026</span>
+      </div>
+    </article>
+
+    <article class="news-card" data-category="generalno">
+      <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80')"></div>
+      <div class="news-body">
+        <span class="news-tag">Generalno</span>
+        <h3>Naslov</h3>
+        <p>text text text text text text text text text text text text text text text text text text </p>
+        <span class="news-date">14 Feb 2026</span>
+      </div>
+    </article>
+
+    <article class="news-card" data-category="utakmica">
+      <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1518604964400-19a44a0f1e63?w=600&q=80')"></div>
+      <div class="news-body">
+        <span class="news-tag">Izveštaj Utakmice</span>
+        <h3>Naslov</h3>
+        <p>text text text text text text text text text text text text text text text text text text text text text</p>
+        <span class="news-date">8 Feb 2026</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="slike/jedinstvo.webp" alt="FK Jedinstvo Pirot" class="nav-logo-img"/>
+      <div>
+        <div class="logo-text">FK JEDINSTVO PIROT</div>
+        <p>Ponos Pirota.<br>Osnovano 1927.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h5>DRUŠTVENO</h5>
+      <a href="https://www.instagram.com/fk_jedinstvo_pirot/" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61588644404676" target="_blank">Facebook</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Kontakt</h5>
+      <p>Gradski Stadion, Pirot</p>
+      <p>fkjedinstvo.rs@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 FK Jedinstvo Pirot.<br>Napravio s ❤️ Mladen Nikolov</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

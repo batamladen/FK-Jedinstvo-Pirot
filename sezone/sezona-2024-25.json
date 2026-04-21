@@ -1,0 +1,69 @@
+{
+  "naziv": "FK JEDINSTVO",
+  "liga": "Pirotska okružna liga",
+  "pozicija": 2,
+  "ukupnoTimova": 10,
+  "komentar": "VICEPRVAK",
+  "tabela": {
+    "azurirano": "Jun 2025",
+    "timovi": [
+      { "ime": "Rajko Mitić", "ou": 18, "pob": 16, "ner": 1, "por": 1, "dat": 58, "prim": 12, "bod": 49, "zonaIspadanja": false },
+      { "ime": "FK Jedinstvo Pirot", "ou": 18, "pob": 15, "ner": 1, "por": 2, "dat": 72, "prim": 11, "bod": 46, "zonaIspadanja": false },
+      { "ime": "Spartak", "ou": 18, "pob": 14, "ner": 1, "por": 3, "dat": 45, "prim": 18, "bod": 43, "zonaIspadanja": false },
+      { "ime": "Zadrugar", "ou": 18, "pob": 12, "ner": 2, "por": 4, "dat": 38, "prim": 22, "bod": 38, "zonaIspadanja": false },
+      { "ime": "Pobeda", "ou": 18, "pob": 10, "ner": 2, "por": 6, "dat": 32, "prim": 28, "bod": 32, "zonaIspadanja": false },
+      { "ime": "Mladost", "ou": 18, "pob": 8, "ner": 3, "por": 7, "dat": 29, "prim": 31, "bod": 27, "zonaIspadanja": false },
+      { "ime": "Sloga", "ou": 18, "pob": 6, "ner": 2, "por": 10, "dat": 24, "prim": 38, "bod": 20, "zonaIspadanja": false },
+      { "ime": "Sloboda", "ou": 18, "pob": 4, "ner": 2, "por": 12, "dat": 18, "prim": 42, "bod": 14, "zonaIspadanja": false },
+      { "ime": "Ponor SU", "ou": 18, "pob": 2, "ner": 1, "por": 15, "dat": 15, "prim": 58, "bod": 7, "zonaIspadanja": true },
+      { "ime": "Zvezda", "ou": 18, "pob": 0, "ner": 1, "por": 17, "dat": 8, "prim": 79, "bod": 1, "zonaIspadanja": true }
+    ]
+  },
+  "igraci": [
+    { "ime": "Marko Stojanović", "broj": 1, "pozicija": "GOLMAN", "utakmice": 18, "golovi": 0, "zuta": 2, "crvena": 0 },
+    { "ime": "Nikola Rančić", "broj": 12, "pozicija": "GOLMAN", "utakmice": 2, "golovi": 0, "zuta": 0, "crvena": 0 },
+    { "ime": "Vladimir Zlatković", "broj": 3, "pozicija": "ODBRANA",  "utakmice": 17, "golovi": 6, "zuta": 4, "crvena": 0 },
+    { "ime": "Robert Petrović", "broj": 4, "pozicija": "ODBRANA",  "utakmice": 18, "golovi": 4, "zuta": 3, "crvena": 0 },
+    { "ime": "Stefan Nikolić", "broj": 5, "pozicija": "ODBRANA",  "utakmice": 15, "golovi": 1, "zuta": 5, "crvena": 1 },
+    { "ime": "Milan Ivanović", "broj": 7, "pozicija": "VEZNI",  "utakmice": 18, "golovi": 10, "asistencije": 8, "zuta": 2, "crvena": 0 },
+    { "ime": "Vladimir Matejić", "broj": 8, "pozicija": "VEZNI", "utakmice": 18, "golovi": 12, "asistencije": 9, "zuta": 3, "crvena": 0 },
+    { "ime": "Predrag Petković", "broj": 10, "pozicija": "VEZNI",  "utakmice": 16, "golovi": 3, "asistencije": 7, "zuta": 1, "crvena": 0 },
+    { "ime": "Lazar Branković", "broj": 14, "pozicija": "VEZNI",  "utakmice": 18, "golovi": 5, "asistencije": 6, "zuta": 2, "crvena": 0 },
+    { "ime": "Željko Milošević", "broj": 9, "pozicija": "NAPADAČ",  "utakmice": 18, "golovi": 26, "asistencije": 4, "zuta": 1, "crvena": 0 },
+    { "ime": "Luka Vasov", "broj": 11, "pozicija": "NAPADAČ",  "utakmice": 18, "golovi": 14, "asistencije": 5, "zuta": 2, "crvena": 0 },
+    { "ime": "Ivan Kovač", "broj": 17, "pozicija": "NAPADAČ",  "utakmice": 18, "golovi": 14, "asistencije": 3, "zuta": 3, "crvena": 0 }
+  ],
+  "rezultati": [
+    { "domacin": "Zadrugar",     "gost": "Jedinstvo",   "golovi": "2-2", "rezultat": "D" },
+    { "domacin": "Jedinstvo",    "gost": "Spartak",     "golovi": "4-0", "rezultat": "W" },
+    { "domacin": "Pobeda",       "gost": "Jedinstvo",   "golovi": "1-4", "rezultat": "W" },
+    { "domacin": "Ponor SU",     "gost": "Jedinstvo",   "golovi": "0-2", "rezultat": "W" },
+    { "domacin": "Jedinstvo",    "gost": "Mladost",     "golovi": "5-0", "rezultat": "W" },
+    { "domacin": "Rajko Mitić",  "gost": "Jedinstvo",   "golovi": "3-1", "rezultat": "L" },
+    { "domacin": "Jedinstvo",    "gost": "Sloga",       "golovi": "5-0", "rezultat": "W" },
+    { "domacin": "Sloboda",      "gost": "Jedinstvo",   "golovi": "0-3", "rezultat": "W" },
+    { "domacin": "Jedinstvo",    "gost": "Zvezda",      "golovi": "6-0", "rezultat": "W" },
+    { "domacin": "Jedinstvo",    "gost": "Zadrugar",    "golovi": "6-0", "rezultat": "W" },
+    { "domacin": "Spartak",      "gost": "Jedinstvo",   "golovi": "0-3", "rezultat": "W" },
+    { "domacin": "Jedinstvo",    "gost": "Pobeda",      "golovi": "5-0", "rezultat": "W" },
+    { "domacin": "Jedinstvo",    "gost": "Ponor SU",    "golovi": "10-1","rezultat": "W" },
+    { "domacin": "Mladost",      "gost": "Jedinstvo",   "golovi": "1-3", "rezultat": "W" },
+    { "domacin": "Jedinstvo",    "gost": "Rajko Mitić", "golovi": "0-1", "rezultat": "L" },
+    { "domacin": "Sloga",        "gost": "Jedinstvo",   "golovi": "2-1", "rezultat": "L" },
+    { "domacin": "Jedinstvo",    "gost": "Sloboda",     "golovi": "5-0", "rezultat": "W" },
+    { "domacin": "Zvezda",       "gost": "Jedinstvo",   "golovi": "0-3", "rezultat": "W" }
+  ],
+  "transferi": [],
+  "strelci": [
+    { "ime": "Željko Milošević", "pozicija": "NAPADAČ", "golovi": 26, "asistencije": 4, "utakmice": 18 },
+    { "ime": "Luka Vasov",       "pozicija": "NAPADAČ", "golovi": 14, "asistencije": 5, "utakmice": 18 },
+    { "ime": "Ivan Kovač",       "pozicija": "NAPADAČ", "golovi": 14, "asistencije": 3, "utakmice": 18 },
+    { "ime": "Vladimir Matejić", "pozicija": "VEZNI", "golovi": 12, "asistencije": 9, "utakmice": 18 },
+    { "ime": "Milan Ivanović",   "pozicija": "VEZNI", "golovi": 10, "asistencije": 8, "utakmice": 18 },
+    { "ime": "Vladimir Zlatković","pozicija": "ODBRANA", "golovi": 6, "asistencije": 2, "utakmice": 17 },
+    { "ime": "Lazar Branković",  "pozicija": "VEZNI", "golovi": 5, "asistencije": 6, "utakmice": 18 },
+    { "ime": "Robert Petrović",  "pozicija": "ODBRANA", "golovi": 4, "asistencije": 1, "utakmice": 18 },
+    { "ime": "Predrag Petković", "pozicija": "VEZNI", "golovi": 3, "asistencije": 7, "utakmice": 16 },
+    { "ime": "Nikola Rančić",    "pozicija": "VEZNI", "golovi": 2, "asistencije": 3, "utakmice": 15 }
+  ]
+}

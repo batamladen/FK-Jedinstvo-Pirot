@@ -1,0 +1,15 @@
+{
+  "azurirano": "03.03.2026.",
+  "timovi": [
+    { "ime": "Jedinstvo (P)",  "ou": 9, "pob": 8, "ner": 1, "por": 0, "dat": 38, "prim": 7,  "bod": 25 },
+    { "ime": "Zadrugar",       "ou": 9, "pob": 6, "ner": 1, "por": 2, "dat": 15, "prim": 10, "bod": 19 },
+    { "ime": "Dragos",         "ou": 9, "pob": 5, "ner": 1, "por": 3, "dat": 27, "prim": 20, "bod": 16 },
+    { "ime": "Mladost",        "ou": 9, "pob": 3, "ner": 2, "por": 4, "dat": 10, "prim": 11, "bod": 11 },
+    { "ime": "Zeljusa",        "ou": 9, "pob": 3, "ner": 2, "por": 4, "dat": 9,  "prim": 11, "bod": 11 },
+    { "ime": "Sloboda",        "ou": 9, "pob": 3, "ner": 2, "por": 4, "dat": 12, "prim": 15, "bod": 11 },
+    { "ime": "Pobeda",         "ou": 9, "pob": 3, "ner": 2, "por": 4, "dat": 9,  "prim": 23, "bod": 11 },
+    { "ime": "Sloga",          "ou": 9, "pob": 2, "ner": 3, "por": 4, "dat": 10, "prim": 17, "bod": 9  },
+    { "ime": "Spartak",        "ou": 9, "pob": 2, "ner": 2, "por": 5, "dat": 13, "prim": 18, "bod": 8, "zonaIspadanja": true },
+    { "ime": "Zvezda",         "ou": 9, "pob": 2, "ner": 0, "por": 7, "dat": 15, "prim": 26, "bod": 6  }
+  ]
+}
