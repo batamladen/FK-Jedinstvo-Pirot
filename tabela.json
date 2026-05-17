@@ -1,15 +1,15 @@
 {
-  "azurirano": "21.04.2026.",
+  "azurirano": "17.05.2026.",
   "timovi": [
-    { "ime": "Jedinstvo (P)", "ou": 10, "pob": 8, "ner": 2, "por": 0, "dat": 39, "prim": 8,  "bod": 26 },
-    { "ime": "Zadrugar",      "ou": 10, "pob": 6, "ner": 2, "por": 2, "dat": 16, "prim": 11, "bod": 20 },
-    { "ime": "Dragoš",        "ou": 10, "pob": 5, "ner": 2, "por": 3, "dat": 28, "prim": 21, "bod": 17 },
-    { "ime": "Sloga",         "ou": 10, "pob": 4, "ner": 3, "por": 3, "dat": 16, "prim": 17, "bod": 15 },
-    { "ime": "Sloboda",       "ou": 10, "pob": 3, "ner": 3, "por": 4, "dat": 13, "prim": 16, "bod": 12 },
-    { "ime": "Mladost",       "ou": 10, "pob": 3, "ner": 2, "por": 5, "dat": 13, "prim": 11, "bod": 11 },
-    { "ime": "Željuša",       "ou": 10, "pob": 3, "ner": 2, "por": 5, "dat": 9,  "prim": 15, "bod": 11 },
-    { "ime": "Pobeda",        "ou": 10, "pob": 3, "ner": 2, "por": 5, "dat": 26, "prim": 26, "bod": 11 },
-    { "ime": "Zvezda",        "ou": 10, "pob": 3, "ner": 0, "por": 7, "dat": 17, "prim": 26, "bod": 9  },
-    { "ime": "Spartak",       "ou": 10, "pob": 2, "ner": 2, "por": 6, "dat": 13, "prim": 20, "bod": 8, "zonaIspadanja": true }
+    { "ime": "Jedinstvo (P)", "ou": 13, "pob": 10, "ner": 3, "por": 0, "dat": 53, "prim": 10, "bod": 33 },
+    { "ime": "Dragoš",        "ou": 13, "pob": 7,  "ner": 3, "por": 3, "dat": 38, "prim": 24, "bod": 24 },
+    { "ime": "Zadrugar",      "ou": 13, "pob": 6,  "ner": 4, "por": 3, "dat": 20, "prim": 21, "bod": 22 },
+    { "ime": "Željuša",       "ou": 13, "pob": 5,  "ner": 2, "por": 6, "dat": 18, "prim": 19, "bod": 17 },
+    { "ime": "Sloga",         "ou": 13, "pob": 4,  "ner": 5, "por": 4, "dat": 19, "prim": 22, "bod": 17 },
+    { "ime": "Zvezda",        "ou": 13, "pob": 5,  "ner": 1, "por": 7, "dat": 25, "prim": 29, "bod": 16 },
+    { "ime": "Pobeda",        "ou": 14, "pob": 4,  "ner": 4, "por": 6, "dat": 16, "prim": 32, "bod": 16 },
+    { "ime": "Mladost",       "ou": 13, "pob": 3,  "ner": 4, "por": 6, "dat": 14, "prim": 20, "bod": 13 },
+    { "ime": "Spartak",       "ou": 13, "pob": 3,  "ner": 3, "por": 7, "dat": 19, "prim": 27, "bod": 12, "zonaIspadanja": true },
+    { "ime": "Sloboda",       "ou": 14, "pob": 3,  "ner": 3, "por": 8, "dat": 16, "prim": 34, "bod": 12, "zonaIspadanja": true }
   ]
 }

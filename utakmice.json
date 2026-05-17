@@ -2,30 +2,6 @@
   "upcoming": [
     {
       "competition": "Pirotska okružna liga",
-      "date": "Kolo 11",
-      "time": "",
-      "home": "Jedinstvo (P)",
-      "away": "Zadrugar",
-      "venue": ""
-    },
-    {
-      "competition": "Pirotska okružna liga",
-      "date": "Kolo 12",
-      "time": "",
-      "home": "Sloboda",
-      "away": "Jedinstvo (P)",
-      "venue": ""
-    },
-    {
-      "competition": "Pirotska okružna liga",
-      "date": "Kolo 13",
-      "time": "",
-      "home": "Pobeda",
-      "away": "Jedinstvo (P)",
-      "venue": ""
-    },
-    {
-      "competition": "Pirotska okružna liga",
       "date": "Kolo 14",
       "time": "",
       "home": "Jedinstvo (P)",
@@ -66,6 +42,39 @@
     }
   ],
   "results": [
+    {
+      "competition": "Pirotska okružna liga",
+      "date": "10.05.2026",
+      "home": "Pobeda",
+      "away": "Jedinstvo (P)",
+      "homeGoals": 1,
+      "awayGoals": 1,
+      "resultClass": "draw",
+      "resultText": "NEREŠENO",
+      "venue": ""
+    },
+    {
+      "competition": "Pirotska okružna liga",
+      "date": "19.04.2026",
+      "home": "FK Sloboda",
+      "away": "Jedinstvo (P)",
+      "homeGoals": 0,
+      "awayGoals": 6,
+      "resultClass": "Win",
+      "resultText": "POBEDA",
+      "venue": ""
+    },
+    {
+      "competition": "Pirotska okružna liga",
+      "date": "19.04.2026",
+      "home": "Jedinstvo (P)",
+      "away": "FK Zadrugar",
+      "homeGoals": 7,
+      "awayGoals": 1,
+      "resultClass": "Win",
+      "resultText": "POBEDA",
+      "venue": ""
+    },
     {
       "competition": "Pirotska okružna liga",
       "date": "19.04.2026",
